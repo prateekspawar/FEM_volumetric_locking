@@ -1,0 +1,59 @@
+# encoding: utf-8
+# Release 19.0
+SetScriptVersion(Version="19.0.136")
+template1 = GetTemplate(
+    TemplateName="Static Structural",
+    Solver="ANSYS")
+system1 = template1.CreateSystem()
+system1.DisplayText = "FEM project"
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometry1.SetFile(FilePath="E:/practicle/fem project/plate.IGS")
+Save(Overwrite=True)
+modelComponent1 = system1.GetComponent(Name="Model")
+modelComponent1.Refresh()
+model1 = system1.GetContainer(ComponentName="Model")
+model1.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+model1.Exit()
+setup1 = system1.GetContainer(ComponentName="Setup")
+setup1.Edit()
+model1.Exit()
+engineeringData1 = system1.GetContainer(ComponentName="Engineering Data")
+material1 = engineeringData1.GetMaterial(Name="Structural Steel")
+matlProp1 = material1.GetProperty(Name="Tensile Yield Strength")
+matlProp1.SetData(
+    Variables=["Tensile Yield Strength"],
+    Values=[["200000000 [Pa]"]])
+matlProp1.SetData(
+    Variables=["Tensile Yield Strength"],
+    Values=[["200000000000 [Pa]"]])
+matlProp2 = material1.GetProperty(Name="Compressive Yield Strength")
+matlProp2.SetData(
+    Variables=["Compressive Yield Strength"],
+    Values=[["200000000000 [Pa]"]])
+matlProp1.SetData(
+    Variables=["Tensile Yield Strength"],
+    Values=[["25000000000 [Pa]"]])
+matlProp1.SetData(
+    Variables=["Tensile Yield Strength"],
+    Values=[["250000000 [Pa]"]])
+matlProp2.SetData(
+    Variables=["Compressive Yield Strength"],
+    Values=[["250000000 [Pa]"]])
+matlProp3 = material1.GetProperty(Name="Elasticity")
+matlProp3.SetData(
+    Variables=["Poisson's Ratio"],
+    Values=[["0.499"]])
+matlProp3.SetData(
+    Variables=["Poisson's Ratio"],
+    Values=[["0.4999"]])
+Save(Overwrite=True)
+Save(Overwrite=True)
+modelComponent1.Refresh()
+model1.Edit()
+Save(Overwrite=True)
+Save(Overwrite=True)
+Save(Overwrite=True)
+model1.Exit()
+Save(Overwrite=True)
